@@ -1,6 +1,6 @@
 # openapi-mcp: make your API usable by Claude, ChatGPT and Cursor
 
-*A [Vínculo](https://github.com/vinculohq) demo (@vinculohq): the link between your product and AI agents.*
+*A [Vínculo](https://github.com/diogofabri) demo (@vinculohq): the link between your product and AI agents.*
 
 Your customers are starting to work through AI assistants. If your SaaS has a REST API, those assistants can already use it. They just need an **MCP server** (Model Context Protocol), the standard way Claude, ChatGPT, Cursor and other agents discover and call tools.
 
