@@ -3,7 +3,13 @@ name = "openapi-mcp"
 version = "0.1.0"
 description = "Expose any OpenAPI 3.x API as MCP tools (read-only by default)."
 requires-python = ">=3.10"
+license = "MIT"
+readme = "README.md"
+authors = [{ name = "Vínculo (Diogo Fabri)" }]
 dependencies = ["mcp>=2.3", "httpx>=0.27", "pyyaml>=6", "uvicorn>=0.30"]
+
+[project.urls]
+Repository = "https://github.com/vinculohq/openapi-mcp"
 
 [project.optional-dependencies]
 test = ["pytest>=8"]

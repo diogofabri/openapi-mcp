@@ -104,6 +104,10 @@ Remote clients that speak Streamable HTTP connect to `http://<host>:<port>/mcp`.
 
 The tests cover tool generation from a local spec, schema validity, `$ref` and recursion handling, calls against a local fake API (path, query, header and body), the write block, Bearer and API-key injection and redaction, input validation, truncation, errors and timeouts, and **end-to-end over stdio** with the official MCP client (list and call).
 
+## License
+
+MIT. See [LICENSE](LICENSE).
+
 ## Limitations (v0.1)
 
 - OpenAPI 3.x only (no Swagger 2.0). Local `$ref`s only.
