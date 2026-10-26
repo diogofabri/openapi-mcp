@@ -1,0 +1,14 @@
+# Example config. Secrets never live here: auth.env names the environment variable.
+spec: petstore.yaml
+base_url: https://petstore.example.com/v1
+server_name: petstore-mcp
+allow_write: false          # GET/HEAD only unless true (or --allow-write)
+include: []                 # e.g. ["listPets", "tag:pets"]
+exclude: ["tag:admin"]      # hide admin operations even if writes are allowed
+timeout: 15
+max_response_chars: 20000
+auth:
+  type: bearer              # none | bearer | api_key
+  env: PETSTORE_TOKEN
+  # header: X-API-Key        # for api_key in a header
+  # query: api_key           # for api_key in the query string

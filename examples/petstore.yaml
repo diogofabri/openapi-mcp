@@ -1,0 +1,128 @@
+openapi: 3.0.3
+info:
+  title: Petstore (demo)
+  version: 1.0.0
+  description: Small example API written for the openapi-mcp demo.
+servers:
+  - url: https://petstore.example.com/v1
+tags:
+  - name: pets
+  - name: admin
+paths:
+  /pets:
+    get:
+      operationId: listPets
+      summary: List pets
+      description: Returns pets, optionally filtered by status.
+      tags: [pets]
+      parameters:
+        - $ref: "#/components/parameters/Limit"
+        - name: status
+          in: query
+          description: Filter by adoption status.
+          schema:
+            $ref: "#/components/schemas/Status"
+      responses:
+        "200":
+          description: A list of pets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Pet"
+    post:
+      operationId: createPet
+      summary: Create a pet
+      tags: [pets]
+      requestBody:
+        required: true
+        description: The pet to create.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/NewPet"
+      responses:
+        "201":
+          description: Created.
+  /pets/{petId}:
+    parameters:
+      - name: petId
+        in: path
+        required: true
+        description: The pet's id.
+        schema:
+          type: integer
+    get:
+      operationId: getPet
+      summary: Get one pet by id
+      tags: [pets]
+      parameters:
+        - name: X-Request-Id
+          in: header
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: The pet.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Pet"
+    delete:
+      operationId: deletePet
+      summary: Delete a pet
+      tags: [admin]
+      responses:
+        "204":
+          description: Deleted.
+  /stats:
+    get:
+      summary: Store statistics
+      tags: [admin]
+      responses:
+        "200":
+          description: Counters.
+components:
+  parameters:
+    Limit:
+      name: limit
+      in: query
+      description: Maximum number of items to return.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+  schemas:
+    Status:
+      type: string
+      enum: [available, pending, adopted]
+    NewPet:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+        status:
+          $ref: "#/components/schemas/Status"
+        owner:
+          $ref: "#/components/schemas/Owner"
+    Pet:
+      allOf:
+        - $ref: "#/components/schemas/NewPet"
+        - type: object
+          required: [id]
+          properties:
+            id:
+              type: integer
+    Owner:
+      type: object
+      properties:
+        name:
+          type: string
+        pets:
+          type: array
+          items:
+            $ref: "#/components/schemas/Owner"
