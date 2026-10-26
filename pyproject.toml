@@ -2,7 +2,7 @@
 name = "openapi-mcp"
 version = "0.1.0"
 description = "Expose any OpenAPI 3.x API as MCP tools (read-only by default)."
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = "MIT"
 readme = "README.md"
 authors = [{ name = "Vínculo (Diogo Fabri)" }]
